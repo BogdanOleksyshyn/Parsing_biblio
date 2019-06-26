@@ -48,9 +48,12 @@ def get_data_for_csv(word, result, all_files):
     f = partial(find_examples, patterns)
     pool = Pool(200)
     results = pool.map(f, all_files)
+    for_row = []
     for res in results:
         if res != []:
-            row = [word, result[word]['examples'], res]
+            for i in res:
+                for_row.append(i)
+    row = [word, result[word]['examples'], for_row]
     return row
 
 
