@@ -1,0 +1,6 @@
+env
+books
+.log
+.txt
+.DS_Store
+main.py
