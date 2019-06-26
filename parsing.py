@@ -17,15 +17,11 @@ def main():
     rows = [get_data_for_csv(word, result, all_files) for word in result]
 
     columns.append(rows)
-    print(columns)
     add_to_csv(columns, 'dictionary.csv')
 
 
 def find_patterns(text, word):
     for_examples = f"(\s*[\w\d]+)([(),\s\w\d\-\%\$]*)\s([\w\d]+)(\s*{word}\s*)([\w\d]+)([(),\s\w\d\-\%\$]*[.\?!])"
-
-    s = f'([A-Z][\w\d\s]+(\s*[\w\d]+)\s*{word}\s*(\s*[\w\d]+)[\w\d\s]+[.?!])'
-
     try:
         res = re.findall(for_examples, text)
         if res != []:
@@ -54,8 +50,7 @@ def get_data_for_csv(word, result, all_files):
     results = pool.map(f, all_files)
     for res in results:
         if res != []:
-            row = [word, result[word]['examples'], [res]]
-            print(row)
+            row = [word, result[word]['examples'], res]
     return row
 
 
