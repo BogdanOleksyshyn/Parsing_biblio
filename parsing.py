@@ -13,10 +13,13 @@ def main():
 
     books = 'books'
     all_files = [f for f in glob.glob(books + "**/*.txt", recursive=True)]
-    all_files = [all_files[i] for i in range(500)]
-    rows = [get_data_for_csv(word, result, all_files) for word in result]
-
-    columns.append(rows)
+    all_files = [all_files[i] for i in range(10)]
+    words = [get_data_for_csv(word, result, all_files)[0] for word in result]
+    examples = [get_data_for_csv(word, result, all_files)[1] for word in result]
+    alt = [get_data_for_csv(word, result, all_files)[2] for word in result]
+    columns.append(words)
+    columns.append(examples)
+    columns.append(alt)
     add_to_csv(columns, 'dictionary.csv')
 
 
